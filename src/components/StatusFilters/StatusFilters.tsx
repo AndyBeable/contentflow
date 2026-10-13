@@ -29,7 +29,7 @@ export default function StatusFilters({
   onStatusChange,
 }: StatusFiltersProps) {
   return (
-    <>
+    <div className="flex gap-4">
       {filterOptions.map((filterOption) => (
         <button
           onClick={() => onStatusChange(filterOption.value)}
@@ -39,6 +39,6 @@ export default function StatusFilters({
           {filterOption.label}
         </button>
       ))}
-    </>
+    </div>
   );
 }
