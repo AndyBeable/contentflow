@@ -22,11 +22,12 @@ export default function ArticlesPage() {
 
   return (
     <>
-      <div className="flex gap-8 mb-4">
+      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <StatusFilters
           selectedStatus={selectedStatus}
           onStatusChange={setSelectedStatus}
         />
+
         <ArticleSearch query={searchQuery} onQueryChange={setSearchQuery} />
       </div>
       {filteredArticles.length === 0 ? (
