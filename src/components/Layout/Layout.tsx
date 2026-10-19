@@ -11,6 +11,7 @@ const getNavLinkClassName = (isActive: boolean) =>
 const pageHeadings: Record<string, string> = {
   "/": "Dashboard",
   "/articles": "Articles",
+  "/articles/new": "New Article",
   "/settings": "Settings",
 };
 
@@ -57,7 +58,7 @@ export default function Layout() {
       <div className="flex min-h-screen min-w-0 flex-col">
         <header className="border-b border-border-subtle bg-surface p-6">
           <h1 className="text-xl font-semibold text-heading">
-            {pageHeadings[location.pathname] ?? "ContnetFlow"}
+            {pageHeadings[location.pathname] ?? "ContentFlow"}
           </h1>
         </header>
 

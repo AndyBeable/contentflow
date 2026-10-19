@@ -3,6 +3,8 @@ import Layout from "./components/Layout/Layout";
 import ArticlesPage from "./pages/ArticlesPage/ArticlesPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
+import NewArticlePage from "./pages/NewArticlePage/NewArticlePage";
+import ArticlesLayout from "./components/ArticlesLayout/ArticlesLayout";
 
 function App() {
   return (
@@ -10,7 +12,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<DashboardPage />} />
-          <Route path="articles" element={<ArticlesPage />} />
+          <Route path="articles" element={<ArticlesLayout />}>
+            <Route index element={<ArticlesPage />} />
+            <Route path="new" element={<NewArticlePage />} />
+          </Route>
+          <Route path="articles/new" element={<NewArticlePage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
