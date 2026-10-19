@@ -6,6 +6,7 @@ import type { ArticlesContextType } from "../../components/ArticlesLayout/Articl
 type ArticleFormData = {
   title: string;
   author: string;
+  body: string;
   status: Status;
 };
 
@@ -15,6 +16,7 @@ export default function NewArticlePage() {
   const [formData, setFormData] = useState<ArticleFormData>({
     title: "",
     author: "",
+    body: "",
     status: "draft",
   });
 
@@ -22,7 +24,11 @@ export default function NewArticlePage() {
 
   function handleOnSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (formData.title.trim() === "" || formData.author.trim() === "") {
+    if (
+      formData.title.trim() === "" ||
+      formData.author.trim() === "" ||
+      formData.body.trim() === ""
+    ) {
       setError("Please complete all required fields");
       return;
     }
@@ -40,6 +46,7 @@ export default function NewArticlePage() {
       slug,
       status: formData.status,
       author: formData.author.trim(),
+      body: formData.body.trim(),
       createdAt,
     };
 
@@ -98,6 +105,25 @@ export default function NewArticlePage() {
             }
             placeholder="Enter an author"
             className="w-full rounded-md border border-border-subtle bg-surface px-3 py-2.5 text-sm text-heading outline-none transition-colors placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary/10"
+          />
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="body" className="text-sm font-medium text-heading">
+            Body
+          </label>
+
+          <textarea
+            id="body"
+            name="body"
+            value={formData.body}
+            placeholder="Write your article content..."
+            onChange={(event) =>
+              setFormData((prev) => ({
+                ...prev,
+                body: event.target.value,
+              }))
+            }
+            className="w-full px-3 py-2.5 min-h-40 text-sm outline-none rounded-md border-border-subtle border focus:border-primary ocus:ring-2 focus:ring-primary/10 resize-y"
           />
         </div>
         <div className="flex flex-col gap-1.5">

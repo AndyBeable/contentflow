@@ -6,5 +6,6 @@ export type Article = {
   slug: string;
   status: Status;
   author: string;
+  body: string;
   createdAt: string;
 };
