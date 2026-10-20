@@ -123,7 +123,7 @@ export default function NewArticlePage() {
                 body: event.target.value,
               }))
             }
-            className="w-full px-3 py-2.5 min-h-40 text-sm outline-none rounded-md border-border-subtle border focus:border-primary ocus:ring-2 focus:ring-primary/10 resize-y"
+            className="w-full px-3 py-2.5 min-h-40 text-sm outline-none rounded-md border-border-subtle border focus:border-primary focus:ring-2 focus:ring-primary/10 resize-y"
           />
         </div>
         <div className="flex flex-col gap-1.5">

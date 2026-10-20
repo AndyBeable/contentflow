@@ -1,4 +1,5 @@
 import type { Article, Status } from "../../types/article";
+import { Link } from "react-router";
 
 type ArticleCardProps = {
   article: Article;
@@ -31,6 +32,14 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         <p className="text-sm text-slate-500">{article.author}</p>
         <span>·</span>
         <p className="text-sm text-slate-500">{article.createdAt}</p>
+      </div>
+      <div>
+        <Link
+          to={`${article.id}/edit`}
+          className="text-sm font-medium text-blue-600 hover:text-blue-800"
+        >
+          Edit
+        </Link>
       </div>
     </article>
   );

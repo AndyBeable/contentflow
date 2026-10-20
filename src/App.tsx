@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import Layout from "./components/Layout/Layout";
 import ArticlesPage from "./pages/ArticlesPage/ArticlesPage";
+import EditArticleRoute from "./pages/EditArticlePage/EditArticleRoute";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import NewArticlePage from "./pages/NewArticlePage/NewArticlePage";
@@ -15,8 +16,8 @@ function App() {
           <Route path="articles" element={<ArticlesLayout />}>
             <Route index element={<ArticlesPage />} />
             <Route path="new" element={<NewArticlePage />} />
+            <Route path=":id/edit" element={<EditArticleRoute />} />
           </Route>
-          <Route path="articles/new" element={<NewArticlePage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
