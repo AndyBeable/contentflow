@@ -1,6 +1,5 @@
-import { useState, type Dispatch, type SetStateAction } from "react";
-import { Outlet } from "react-router";
-import { articles } from "../../data/articles";
+import { type Dispatch, type SetStateAction } from "react";
+import { Outlet, useOutletContext } from "react-router";
 import type { Article } from "../../types/article";
 
 export type ArticlesContextType = {
@@ -9,7 +8,8 @@ export type ArticlesContextType = {
 };
 
 export default function ArticlesLayout() {
-  const [articlesList, setArticlesList] = useState<Article[]>(articles);
+  const { articlesList, setArticlesList } =
+    useOutletContext<ArticlesContextType>();
 
   return <Outlet context={{ articlesList, setArticlesList }} />;
 }

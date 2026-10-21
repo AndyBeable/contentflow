@@ -1,5 +1,8 @@
 import { Outlet, NavLink, useLocation } from "react-router";
+import { useState, useEffect } from "react";
 import { LayoutDashboard, FileText, Settings, Layers } from "lucide-react";
+import type { Article } from "../../types/article";
+import { articles } from "../../data/articles";
 
 const getNavLinkClassName = (isActive: boolean) =>
   `rounded-md px-3 py-2 text-sm transition-colors flex items-center gap-2 ${
@@ -16,6 +19,24 @@ const pageHeadings: Record<string, string> = {
 };
 
 export default function Layout() {
+  const [articlesList, setArticlesList] = useState<Article[]>(() => {
+    try {
+      const storedArticles = localStorage.getItem("articles");
+
+      const initialArticles = storedArticles
+        ? JSON.parse(storedArticles)
+        : articles;
+
+      return initialArticles;
+    } catch {
+      return articles;
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("articles", JSON.stringify(articlesList));
+  }, [articlesList]);
+
   const location = useLocation();
 
   return (
@@ -63,7 +84,7 @@ export default function Layout() {
         </header>
 
         <main className="flex-1 bg-surface p-6">
-          <Outlet />
+          <Outlet context={{ articlesList, setArticlesList }} />
         </main>
       </div>
     </div>
