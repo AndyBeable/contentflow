@@ -159,7 +159,7 @@ export default function NewArticlePage() {
           type="submit"
           className="self-end cursor-pointer rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
         >
-          Submit
+          Save
         </button>
       </form>
     </>
