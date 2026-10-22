@@ -19,7 +19,7 @@ const statusStyles: Record<Status, string> = {
 
 export default function ArticleCard({ article }: ArticleCardProps) {
   return (
-    <article className="rounded-md border border-slate-200 bg-white p-4">
+    <article className="w-full rounded-md border border-slate-200 bg-white p-4">
       <div className="flex justify-between items-start mb-3">
         <h2 className="font-semibold">{article.title}</h2>
         <p
