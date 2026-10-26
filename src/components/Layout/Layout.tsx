@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { LayoutDashboard, FileText, Settings, Layers } from "lucide-react";
 import type { Article } from "../../types/article";
 import { articles } from "../../data/articles";
+import { getArticles } from "../../lib/articles";
 
 const getNavLinkClassName = (isActive: boolean) =>
   `rounded-md px-3 py-2 text-sm transition-colors flex items-center gap-2 ${
@@ -19,6 +20,8 @@ const pageHeadings: Record<string, string> = {
 };
 
 export default function Layout() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [articlesList, setArticlesList] = useState<Article[]>(() => {
     try {
       const storedArticles = localStorage.getItem("articles");
@@ -32,6 +35,25 @@ export default function Layout() {
       return articles;
     }
   });
+
+  useEffect(() => {
+    async function loadArticles() {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const articles = await getArticles();
+
+        setArticlesList(articles);
+      } catch {
+        setError("Failed to load articles");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadArticles();
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("articles", JSON.stringify(articlesList));
